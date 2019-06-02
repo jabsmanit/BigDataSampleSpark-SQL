@@ -1,2 +1,2 @@
 # BigDataSampleSpark
-This repository hosts sample big data applications developed in Spark SQL
+This repository hosts sample big data applications developed in Spark SQL# BigDataSampleSpark-SQL
