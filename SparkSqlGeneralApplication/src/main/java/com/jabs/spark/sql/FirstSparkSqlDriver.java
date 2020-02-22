@@ -11,6 +11,10 @@ public class FirstSparkSqlDriver {
 
 	public static void main(String[] args) {
 		SparkSession session = SparkSession.builder().appName("FirstSparkSqlDriver").getOrCreate();
+		//Dataset<Row> df = session.read().json("examples/src/main/resources/people.json");
+		//session.read().format("parquet").load("/directory");
+		//session.read().parquet("/directory");
+
 		JavaRDD<String> javaRDD = session.read().textFile(args[0]).javaRDD();
 	
 		JavaRDD<Customer> customerRDD = javaRDD.map(line -> {
@@ -22,6 +26,7 @@ public class FirstSparkSqlDriver {
 		Dataset<Row> peopleDF = session.createDataFrame(customerRDD, Customer.class);
 		peopleDF.printSchema();
 		peopleDF.show();
+		//peopleDF.select("").show();
 		
 		// Register the DataFrame as a temporary view
 		peopleDF.createOrReplaceTempView("customer");
